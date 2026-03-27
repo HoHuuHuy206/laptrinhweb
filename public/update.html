@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cập nhật</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="nav">
+    <a href="index.html">Home</a> | 
+    <a href="logout.html">Đăng xuất</a>
+</div>
+
+<div class="container">
+    <h2>Màn hình cập nhật</h2>
+    <form onsubmit="updateUser(event)">
+        <label>Username</label>
+        <input type="text" id="updUser">
+
+        <label>Email</label>
+        <input type="email" id="updEmail">
+
+        <button type="submit">Cập nhật</button>
+    </form>
+</div>
+
+<footer>Lập trình web @2026</footer>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const user = params.get("user");
+
+// Hiển thị dữ liệu hiện tại từ localStorage
+document.getElementById("updUser").value = localStorage.getItem("username");
+document.getElementById("updEmail").value = localStorage.getItem("email");
+
+function updateUser(e) {
+    e.preventDefault();
+    let newUser = document.getElementById("updUser").value;
+    let newEmail = document.getElementById("updEmail").value;
+
+    // Cập nhật lại dữ liệu trong localStorage
+    localStorage.setItem("username", newUser);
+    localStorage.setItem("email", newEmail);
+
+    alert("Cập nhật thành công!");
+    window.location.href = "list.html";
+}
+</script>
+</body>
+</html>
