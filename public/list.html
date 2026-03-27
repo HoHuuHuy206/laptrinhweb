@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách user</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="nav">
+    <a href="index.html">Home</a> | 
+    <a href="logout.html">Đăng xuất</a>
+</div>
+
+<h2 style="text-align:center">Danh sách user</h2>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Thao tác</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td id="userCell"></td>
+        <td id="emailCell"></td>
+        <td>
+            <a id="viewLink">View</a> |
+            <a id="editLink">Edit</a> |
+            <a href="#" onclick="deleteUser()">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<footer>Lập trình web @2026</footer>
+
+<script>
+let user = localStorage.getItem("username");
+let email = localStorage.getItem("email");
+
+document.getElementById("userCell").innerText = user ? user : "";
+document.getElementById("emailCell").innerText = email ? email : "";
+
+if (user) {
+    document.getElementById("viewLink").href = "view.html?user=" + user;
+    document.getElementById("editLink").href = "update.html?user=" + user;
+} else {
+    document.getElementById("viewLink").removeAttribute("href");
+    document.getElementById("editLink").removeAttribute("href");
+}
+
+function deleteUser() {
+    if (confirm("Bạn có chắc muốn xóa user này?")) {
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+        localStorage.removeItem("email");
+        alert("User đã bị xóa!");
+        window.location.reload();
+    }
+}
+</script>
+</body>
+</html>
+ 
